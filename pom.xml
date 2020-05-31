@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.homekeep</groupId>
     <artifactId>api-config</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2</version>
     <name>api-config</name>
     <description>Gateway microservice</description>
 

@@ -65,7 +65,6 @@ pipeline {
                     RELEASED = input(
                         id: 'userInput', message: 'Link patch to environment and release',
                         parameters: [
-                          [$class: 'TextParameterDefinition', defaultValue: "No", description: 'Push to production', name: 'Push'],
                             [$class: 'ChoiceParameterDefinition', defaultValue: 'No', choices: "Yes\nNo", description: 'Push to production', name: 'PROD']
                     ])
                       	env.RESPONSE = 'true'

@@ -58,18 +58,36 @@ pipeline {
             }
         }
 
+        stage('Promote?') {
+        steps {
+            script {
+                  try {
+                    RELEASED = input(
+                        id: 'userInput', message: 'Link patch to environment and release',
+                        parameters: [
+                          [$class: 'TextParameterDefinition', defaultValue: "No", description: 'Push to production', name: 'Push'],
+                            [$class: 'ChoiceParameterDefinition', defaultValue: 'No', choices: "Yes\nNo", description: 'Push to production', name: 'PROD']
+                    ])
+                      	env.RESPONSE = 'true'
+                  } catch(Exception e) {
+                        env.RESPONSE = 'false'
+                        currentBuild.result = 'SUCCESS'
+                  }
+                }
+            }
+        }
+
         stage('Release') {
             when {
                 expression {
                     BRANCH_NAME == 'develop'
+                    env.RESPONSE = 'true'
                 }
             }
 
             steps {
                 // Get some code from a GitHub repository
-                bat "git branch -u origin/develop develop"
-                bat "git config user.email \"niko.vanhoeck@gmail.com\""
-                bat "git config user.name \"niko\""
+                bat "git checkout develop"
                 bat "git commit -am \"Released version ${NEW_VERSION}\""
                 bat "git checkout master"
                 bat "git merge develop"

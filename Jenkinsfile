@@ -54,6 +54,7 @@ pipeline {
 
             steps {
                 // Get some code from a GitHub repository
+                bat "git remote add heroku https://git.heroku.com/homekeep-api-config.git"
                 bat "git tag -a tagName -m ${NEW_VERSION}"
                 bat "git push heroku"
             }

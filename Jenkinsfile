@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        NEW_VERSION = '0.0.2'
+        NEW_VERSION = '0.0.3'
         ORG = 'homekeep'
         APP_NAME = 'homekeep-gateway'
     }
@@ -75,7 +75,7 @@ pipeline {
                 bat "git commit -am \"Released version ${NEW_VERSION}\""
                 bat "git checkout master"
                 bat "git merge develop"
-                bat "git tag -a tagName -m ${NEW_VERSION}"
+                bat "git tag -a ${NEW_VERSION} -m ${NEW_VERSION}"
                 bat "git push heroku"
             }
         }

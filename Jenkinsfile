@@ -81,7 +81,7 @@ pipeline {
             when {
                 expression {
                     BRANCH_NAME == 'develop'
-                    env.RESPONSE = 'true'
+                    RELEASED == 'Yes'
                 }
             }
 

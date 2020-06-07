@@ -1,0 +1,6 @@
+POST http://localhost:8180/auth/realms/homekeep/protocol/openid-connect/token
+Content-Type: application/x-www-form-urlencoded
+
+client_id=homekeep-app&username=niko&password=Meranmor13&grant_type=password
+
+###
